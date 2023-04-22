@@ -1,28 +1,47 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet ,TouchableOpacity} from 'react-native';
 
 function Card(props) {
-  const { image, doctorName, specialty, consultationType, slotDate, slotTime, clinicName, clinicAddress } = props;
+  const { image, doctorName, specialty, consultationType, slotDate, slotTime, clinicName, clinicAddress, slotEndTime } = props;
 
   return (
     <View style={styles.container}>
+      <View style={{flex:1, flexDirection: 'row'}}>
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.content}>
-        <Text style={styles.doctorName}>{doctorName}</Text>
-        <Text style={styles.specialty}>{specialty}</Text>
-        <Text style={styles.consultationType}>{consultationType}</Text>
-        <Text style={styles.slotDate}>{slotDate}</Text>
-        <Text style={styles.slotTime}>{slotTime}</Text>
-        <Text style={styles.clinicName}>{clinicName}</Text>
-        <Text style={styles.clinicAddress}>{clinicAddress}</Text>
+        {doctorName && <Text style={styles.doctorName}>{doctorName}</Text>}
+        {specialty && <Text style={styles.specialty}>{specialty}</Text>}
+        {consultationType && <Text style={styles.consultationType}>{consultationType}</Text>}
+        {slotDate && <Text style={styles.slotDate}>{slotDate}</Text>}
+        {slotTime && <Text style={styles.slotTime}>{slotTime}-{slotEndTime}</Text>}
+        {clinicName && <Text style={styles.clinicName}>{clinicName}</Text>}
+        {clinicAddress && <Text style={styles.clinicAddress}>{clinicAddress}</Text>}
       </View>
+      </View>
+      <View style={styles.cardFooter}>
+      <TouchableOpacity style={styles.footerButton}>
+        <Text style={styles.buttonText}>Prescription</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.footerButton}>
+        <Text style={styles.buttonText}>Invoices</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.footerButton}>
+        <Text style={styles.buttonText}>History</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.footerButton}>
+        <Text style={styles.buttonText}>Experience</Text>
+      </TouchableOpacity>
+    </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+   
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 10,
@@ -73,6 +92,23 @@ const styles = StyleSheet.create({
   },
   clinicAddress: {
     fontSize: 16,
+  },
+  cardFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 8,
+    marginTop:10
+  },
+  footerButton: {
+    backgroundColor: '#eee',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+  },
+  footerButtonText: {
+    color: '#333',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

@@ -22,6 +22,7 @@ const consultantDetails = ({ route }) => {
                 slotTime={item.slotStartTime}
                 clinicName={item.clinicName}
                 clinicAddress={item.clinicAddress}
+                slotEndTime={item.slotEndTime}
             />
         )
     }
@@ -39,8 +40,15 @@ const consultantDetails = ({ route }) => {
             setSelectedButton('button2')
         }
         else {
-            const newData = cDetails.filter(item =>
-                item.consultationType.includes("VIDEO_CALL" || "PHONE_CALL")
+            const newData = cDetails.filter(item => {
+                if(item.consultationType.includes("PHONE_CALL")){
+                    return item.consultationType.includes("PHONE_CALL")
+                }
+                else if(item.consultationType.includes("VIDEO_CALL")){
+                    return item.consultationType.includes("VIDEO_CALL")
+                }
+            }
+                
             );
             setpasentdata(newData)
             setSelectedButton('button1')

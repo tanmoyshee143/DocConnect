@@ -13,7 +13,7 @@ const HistoryScreen = () => {
     const handleSearch = (text) => {
         setSearchText(text);
 
-        const newData = pasentData.filter(item =>  
+        const newData = pasentData.filter(item =>
             item.doctorName.toLowerCase().includes(text.toLowerCase())
         );
 
@@ -39,6 +39,7 @@ const HistoryScreen = () => {
                 slotTime={item.slotStartTime}
                 clinicName={item.clinicName}
                 clinicAddress={item.clinicAddress}
+                slotEndTime={item.slotEndTime}
             />
         )
     }
